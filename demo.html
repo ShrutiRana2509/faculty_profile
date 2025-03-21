@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publication Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .publication-counter {
+            padding: 80px 0;
+        }
+        .counter-title h2 {
+            font-size: 36px;
+            color: #fed700;
+        }
+        .counter-title p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #e5e5e5;
+        }
+        .counters {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        .counter-box {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 180px;
+            transition: 0.3s;
+        }
+        .counter-box strong {
+            font-size: 40px;
+            display: block;
+            color: #fed700;
+        }
+        .counter-box span {
+            font-size: 18px;
+            color: #e5e5e5;
+        }
+        .counter-box:hover {
+            background: #fed700;
+            color: black;
+        }
+        .counter-box:hover strong {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="publication-counter" id="publications">
+        <div class="counter-title">
+            <h2>Publications & Intellectual Property</h2>
+            <p>Check out my research work and contributions</p>
+        </div>
+        <div class="counters">
+            <!-- Research Papers -->
+            <div class="counter-box">
+                <strong class="number" data-target="5">0</strong>
+                <span>Research Papers</span>
+            </div>
+            <!-- Patents -->
+            <div class="counter-box">
+                <strong class="number" data-target="2">0</strong>
+                <span>Patents</span>
+            </div>
+            <!-- Copyrights -->
+            <div class="counter-box">
+                <strong class="number" data-target="1">0</strong>
+                <span>Copyrights</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const counters = document.querySelectorAll(".number");
+
+            counters.forEach((counter) => {
+                counter.innerText = "0";
+                const target = +counter.getAttribute("data-target");
+                const increment = target / 100;
+
+                function updateCounter() {
+                    let current = +counter.innerText;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current + increment);
+                        setTimeout(updateCounter, 50);
+                    } else {
+                        counter.innerText = target;
+                    }
+                }
+
+                updateCounter();
+            });
+        });
+    </script>
+
+</body>
+</html>
